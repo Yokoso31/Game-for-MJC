@@ -54,15 +54,35 @@
             platforms.create(400, 575, 'ground');
 
             // Add Player
-            const player = this.physics.add.sprite(400, 100, 'player');
-            player.setBounce(0.2);
-            player.setCollideWorldBounds(true);
+            this.player = this.physics.add.sprite(400, 100, 'player');
+            this.player.setBounce(0.2);
+            this.player.setCollideWorldBounds(true);
 
             // Add Collision
-            this.physics.add.collider(player, platforms);
+            this.physics.add.collider(this.player, platforms);
+
+            // Input Events
+            this.cursors = this.input.keyboard.createCursorKeys();
         }
 
         function update() {
+            if (this.cursors.left.isDown)
+            {
+                this.player.setVelocityX(-160);
+            }
+            else if (this.cursors.right.isDown)
+            {
+                this.player.setVelocityX(160);
+            }
+            else
+            {
+                this.player.setVelocityX(0);
+            }
+
+            if (this.cursors.up.isDown && this.player.body.touching.down)
+            {
+                this.player.setVelocityY(-330);
+            }
         }
     </script>
 </body>
