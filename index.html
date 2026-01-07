@@ -33,6 +33,7 @@
         const game = new Phaser.Game(config);
 
         function preload() {
+            this.load.image('player', 'Asset/joueur.png');
         }
 
         function create() {
@@ -41,12 +42,6 @@
             groundGraphics.fillStyle(0x00ff00, 1);
             groundGraphics.fillRect(0, 0, 800, 50);
             groundGraphics.generateTexture('ground', 800, 50);
-
-            // Generate texture for the player (Red square)
-            const playerGraphics = this.make.graphics({ x: 0, y: 0, add: false });
-            playerGraphics.fillStyle(0xff0000, 1);
-            playerGraphics.fillRect(0, 0, 50, 50);
-            playerGraphics.generateTexture('player', 50, 50);
 
             // Add Ground
             const platforms = this.physics.add.staticGroup();
